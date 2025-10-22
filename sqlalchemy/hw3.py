@@ -10,10 +10,9 @@
 
 from sqlalchemy import create_engine, Integer, String, Float, Boolean, ForeignKey
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship, sessionmaker
-# from typing import Optional
 
+engine = create_engine("sqlite:///:memory:", echo=True)
 
-engine = create_engine("sqlite:///:memory:",  echo=True)
 
 class Base(DeclarativeBase):
     __abstract__ = True
@@ -22,6 +21,7 @@ class Base(DeclarativeBase):
         primary_key=True,
         autoincrement=True
     )
+
 
 class Product(Base):
     __tablename__ = 'products'
@@ -49,13 +49,9 @@ class Category(Base):
     )
 
 
-
 Base.metadata.create_all(bind=engine)
 
 Session = sessionmaker(bind=engine)
 session = Session()
 
 session.close()
-
-
-
