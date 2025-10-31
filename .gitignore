@@ -5,3 +5,4 @@ __pycache__/
 *.sql
 /.env
 /film_search2.py
+*.db
